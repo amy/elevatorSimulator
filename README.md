@@ -28,7 +28,7 @@ Below, we dive into the setup of each component in more detail.
 ## Simulator 
 ## Elevator System
 
-### Improvements
+## Improvements
 
 1. **Add Tests**
 2. **Elevator Idle State:** When elevators are idle, I should add logic in the elevator's move() function that positions them close to floors most likely to receive requests. For instance, in the beginning of the workday, elevators should be idle on floor 0. During lunch, elevators should stagger themselves through the building.
