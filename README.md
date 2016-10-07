@@ -9,6 +9,8 @@ $ go get -u github.com/amy/elevatorSimulator
 $ cd elevatorSimulator
 $ go build
 $ ./elevatorSimulator
+// When the elevators all stop moving hit ctrl-c
+// see Improvements section that addresses this
 ```
 ## Sample Output
 
