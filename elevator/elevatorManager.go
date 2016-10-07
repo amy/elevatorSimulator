@@ -23,7 +23,7 @@ func (em *ElevatorManager) Snapshot() {
 	fmt.Println("--------------------")
 }
 
-// send request to most suitable elevator
+// Schedule sends request to most suitable elevator
 func (em *ElevatorManager) Schedule(r simulator.Request) {
 
 	var suitable *Elevator = nil

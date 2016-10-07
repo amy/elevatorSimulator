@@ -14,6 +14,7 @@ type Elevator struct {
 	Idle            bool
 }
 
+// pickup moves pickup requests to respective dropoff floor
 func (e *Elevator) pickup() {
 	requests := e.PickupRequests[e.Floor]
 
@@ -35,6 +36,7 @@ func (e *Elevator) pickup() {
 	e.PickupRequests[e.Floor] = []Request{}
 }
 
+// dropoff removes dropoff requests at assigned floor
 func (e *Elevator) dropoff() {
 	requests := e.DropoffRequests[e.Floor]
 
@@ -56,6 +58,7 @@ func (e *Elevator) dropoff() {
 	e.DropoffRequests[e.Floor] = []Request{}
 }
 
+// hasRequests tells you if elevator has any assigned requests
 func (e *Elevator) hasRequests() bool {
 	for _, r := range e.PickupRequests {
 		if len(r) > 0 {
@@ -72,6 +75,7 @@ func (e *Elevator) hasRequests() bool {
 	return false
 }
 
+// move steps elevator up or down
 func (e *Elevator) move() {
 
 	if e.Idle {
@@ -92,6 +96,7 @@ func (e *Elevator) move() {
 	}
 }
 
+// min returns lowest floor with either a pick up or drop off request
 func (e *Elevator) min() int {
 	pmin := 0
 	for i := 0; i < len(e.PickupRequests); i++ {
@@ -116,6 +121,7 @@ func (e *Elevator) min() int {
 	return dmin
 }
 
+// max returns highest floor with either a pick up or drop off request
 func (e *Elevator) max() int {
 	pmax := 0
 	for i := len(e.PickupRequests) - 1; i >= 0; i-- {
@@ -126,7 +132,7 @@ func (e *Elevator) max() int {
 	}
 
 	dmax := 0
-	for i := len(e.PickupRequests) - 1; i >= 0; i-- {
+	for i := len(e.DropoffRequests) - 1; i >= 0; i-- {
 		if len(e.DropoffRequests[i]) > 0 {
 			dmax = i
 			break
