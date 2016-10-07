@@ -18,6 +18,7 @@ type Scheduler interface {
 
 type Request interface{}
 
+// StartStepper starts steps simulation at the interval provided by ticker
 func StartStepper(stpr Stepper, ticker *time.Ticker, wg *sync.WaitGroup, done chan bool) {
 	defer wg.Done()
 
@@ -33,9 +34,9 @@ func StartStepper(stpr Stepper, ticker *time.Ticker, wg *sync.WaitGroup, done ch
 	}
 }
 
-// @TODO inject time + interval
+// SendRequests sends schedule requests at 3 second intervals
 func SendRequests(shdler Scheduler, requests <-chan Request) {
-	// sanitize requests to be 0 < x < top floor
+	// @TODO inject time + interval
 
 	for r := range requests {
 		shdler.Schedule(r)
