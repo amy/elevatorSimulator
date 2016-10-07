@@ -27,3 +27,9 @@ Below, we dive into the setup of each component in more detail.
 
 ## Simulator 
 ## Elevator System
+
+### Improvements
+
+1. **Add Tests**
+2. **Elevator Idle State:** When elevators are idle, I should add logic in the elevator's move() function that positions them close to floors most likely to receive requests. For instance, in the beginning of the workday, elevators should be idle on floor 0. During lunch, elevators should stagger themselves through the building.
+3. **Stopping Mechanism**: There's currently infrastructure in the simulator to send a done signal to stop the simulation. However, I never actually send a signal and need to manually quit the simulation with ctrl-c. I would like to avoid involving the elevator component to send the done logic, as it needs to be implemented on the simulator level.
