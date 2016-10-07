@@ -18,7 +18,8 @@ $ ./elevatorSimulator
 
 
 ### Overview 
-In breaking down the elevator simulator, there are two main conceptual components: 
+In breaking down the elevator simulator, there are two main conceptual components:
+
 1. **SIMULATOR:** The simulator is responsible for stepping the system forward. It is also responsible for sending requests to the system to schedule. 
 2. **ELEVATOR SYSTEM:** The elevator system is the meat of this project. You can create any number of elevators and send any number of requests.
 
