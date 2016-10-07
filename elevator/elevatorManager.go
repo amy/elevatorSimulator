@@ -23,6 +23,18 @@ func (em *ElevatorManager) Snapshot() {
 	fmt.Println("--------------------")
 }
 
+// Step advances elevators in the system for one step. One step involves moving the elevator
+// up or down, as well as picking up and dropping off requests.
+func (em *ElevatorManager) Step() {
+	for _, e := range em.Elevators {
+		if e.Idle == false {
+			e.pickup()
+			e.dropoff()
+			e.move()
+		}
+	}
+}
+
 // Schedule sends request to most suitable elevator
 func (em *ElevatorManager) Schedule(r simulator.Request) {
 
@@ -45,19 +57,9 @@ func (em *ElevatorManager) Schedule(r simulator.Request) {
 		fmt.Printf("SCHEDULED request id %v to elevator %v. Destination floor %v\n", r.(Request).Id, suitable.Id, r.(Request).Destination)
 		suitable.add(r.(Request))
 
-		// -- add more Request Type handling here -- //
+		///////////////////////////////////////////////
+		// -- ADD MORE REQUEST TYPE HANDLING HERE -- //
+		///////////////////////////////////////////////
 	}
 
-}
-
-// Step advances elevators in the system for one step. One step involves moving the elevator
-// up or down, as well as picking up and dropping off requests.
-func (em *ElevatorManager) Step() {
-	for _, e := range em.Elevators {
-		if e.Idle == false {
-			e.pickup()
-			e.dropoff()
-			e.move()
-		}
-	}
 }

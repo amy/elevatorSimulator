@@ -26,10 +26,21 @@ In breaking down the elevator simulator, there are two main conceptual component
 Below, we dive into the setup of each component in more detail. 
 
 ## Simulator 
+Our simulator has two primary functions defined:
+
+1. **StartStepper:** This will start the time-stepping simulation. It steps and snapshots the system after every tick. There is infrastructure to stop the simulation by sending a signal to the done channel, but that has yet to be implemented. See the improvement section for more details.
+2. **SendRequests:** This sends requests at 3 second intervals to the Scheduler to schedule. 
+
+Both functions should be run on separate go routines. 
+
 ## Elevator System
+After initializing elevators, requests, and a elevator manager, you interact with the system through the elevator manager.
+
+**Scheduling:** At each step, each elevator will be given a "suitability" score based on proximity to the request and direction. The source of this calculation can be found here [http://www.columbia.edu/~cs2035/courses/ieor4405.S13/p14.pdf]
 
 ## Improvements
 
 1. **Add Tests**
 2. **Elevator Idle State:** When elevators are idle, I should add logic in the elevator's move() function that positions them close to floors most likely to receive requests. For instance, in the beginning of the workday, elevators should be idle on floor 0. During lunch, elevators should stagger themselves through the building.
 3. **Stopping Mechanism**: There's currently infrastructure in the simulator to send a done signal to stop the simulation. However, I never actually send a signal and need to manually quit the simulation with ctrl-c. I would like to avoid involving the elevator component to send the done logic, as it needs to be implemented on the simulator level.
+4. **Abstracting Request Handling Logic**: I would like to make a Schedulable interface to abstract out request logic instead of having a blank interface. Currently, there's infrastructure in elevator manager Schedule to accept any struct and specifically handles the elevator.Request type. I would like to change it to a Scheduable interface, and move the scoring logic over to the request so that the request can schedule itself. 

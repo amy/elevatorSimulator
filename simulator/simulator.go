@@ -6,6 +6,7 @@ import (
 )
 
 // Stepper is an interface that steps the Stepper system forward
+// and takes a snapshot at each step
 type Stepper interface {
 	Step()
 	Snapshot()
