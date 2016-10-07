@@ -18,6 +18,8 @@ $ ./elevatorSimulator
 
 ## Project Walkthrough
 
+This was my first time doing concurrent programming, so this was a fun exercise. 
+
 
 ### Overview 
 The main implementation of this simulation has 3 elevators and 4 requests. I also bound the elevator system to 10 floors.
