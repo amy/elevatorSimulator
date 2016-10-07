@@ -18,15 +18,6 @@ type Scheduler interface {
 
 type Request interface{}
 
-// delete this later
-/*type Request struct {
-	id          int
-	start       int
-	destination int
-	direction   string
-	state       string // starts out as pick up --> moves to dropoff
-} */
-
 func StartStepper(stpr Stepper, ticker *time.Ticker, wg *sync.WaitGroup, done chan bool) {
 	defer wg.Done()
 

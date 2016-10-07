@@ -11,6 +11,7 @@ type ElevatorManager struct {
 	Elevators []*Elevator
 }
 
+// Snapshot shows what floor all the elevators in the system are on
 func (em *ElevatorManager) Snapshot() {
 
 	fmt.Println("--- CURRENT STEP ---")
@@ -49,6 +50,8 @@ func (em *ElevatorManager) Schedule(r simulator.Request) {
 
 }
 
+// Step advances elevators in the system for one step. One step involves moving the elevator
+// up or down, as well as picking up and dropping off requests.
 func (em *ElevatorManager) Step() {
 	for _, e := range em.Elevators {
 		if e.Idle == false {

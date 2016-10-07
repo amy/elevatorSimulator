@@ -31,11 +31,13 @@ func main() {
 	wg.Wait()
 }
 
-func InitElevatorManager(numElevators int) *elevator.ElevatorManager {
+// InitElevatorManager initializes an elevator manager with
+// n elevators starting on floor 0
+func InitElevatorManager(n int) *elevator.ElevatorManager {
 
 	system := []*elevator.Elevator{}
 
-	for i := 0; i < numElevators; i++ {
+	for i := 0; i < n; i++ {
 
 		e := &elevator.Elevator{
 			Id:              i,
@@ -53,11 +55,13 @@ func InitElevatorManager(numElevators int) *elevator.ElevatorManager {
 
 }
 
-func InitRequestChannel(numRequests int) chan simulator.Request {
+// InitRequestChannel initializes the request channel with n requests
+// starting from floor 0 and ending on a randomized floor
+func InitRequestChannel(n int) chan simulator.Request {
 
-	var requests = make(chan simulator.Request, numRequests)
+	var requests = make(chan simulator.Request, n)
 
-	for i := 0; i < numRequests; i++ {
+	for i := 0; i < n; i++ {
 		rand.Seed(time.Now().UnixNano())
 		dest := rand.Intn(9)
 
