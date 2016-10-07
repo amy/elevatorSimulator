@@ -36,7 +36,9 @@ Both functions should be run on separate go routines.
 ## Elevator System
 After initializing elevators, requests, and a elevator manager, you interact with the system through the elevator manager.
 
-**Scheduling:** At each step, each elevator will be given a "suitability" score based on proximity to the request and direction. The source of this calculation can be found here [http://www.columbia.edu/~cs2035/courses/ieor4405.S13/p14.pdf]
+**Scheduling:** Each elevator will be given a "suitability" score based on proximity to the request and direction. The source of this calculation can be found [here.](http://www.columbia.edu/~cs2035/courses/ieor4405.S13/p14.pdf) Once a suitable elevator has been chosen, it is sent to the elevator's PickupRequests field.
+
+**Moving:** At each tick, if the pick up floor has been reached, the elevator will pick up requests from PickupRequests and send them to the appropriate floor in DropoffRequests. The elevator will also dropoff requests from DropoffRequests once the drop off floor is reached. If the elevator's direction is up, it will travel up until the highest request and back down until the lowest request. It will also remain on the same floor when there are no requests to service. 
 
 ## Improvements
 
