@@ -20,8 +20,7 @@ func (e *Elevator) pickup() {
 
 	if len(requests) > 0 {
 		for _, r := range requests {
-			dropOff := append(e.DropoffRequests[r.Destination], r)
-			e.DropoffRequests[r.Destination] = dropOff
+			e.DropoffRequests[r.Destination] = append(e.DropoffRequests[r.Destination], r)
 		}
 	}
 
@@ -150,8 +149,7 @@ func (e *Elevator) max() int {
 func (e *Elevator) add(r Request) {
 	e.Idle = false
 
-	pickup := append(e.PickupRequests[r.Start], r)
-	e.PickupRequests[r.Start] = pickup
+	e.PickupRequests[r.Start] = append(e.PickupRequests[r.Start], r)
 }
 
 // calculate "suitability score"
